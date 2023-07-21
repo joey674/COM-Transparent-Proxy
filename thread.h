@@ -19,7 +19,6 @@ thread_read_from_service(HANDLE hDev) {
     int i = 0;
     DWORD bytes_read_from_service = 0;
     DWORD bytes_write_in_buffer = 0;
-    //uint8_t buf[BUFFER_SIZE] = { 0 };
     uint8_t* buf = new uint8_t[BUFFER_SIZE]();
     DWORD errors;
     COMSTAT status;
@@ -37,7 +36,7 @@ thread_read_from_service(HANDLE hDev) {
             WaitForSingleObject(hSmpVirCom, INFINITE);
             ReadFile(hDev, buf, BUFFER_SIZE, &bytes_read_from_service, NULL);
             ReleaseSemaphore(hSmpVirCom, 1, NULL);
-            printf("---%d bytes_read_from_service.", bytes_read_from_service);
+            printf("%d bytes_read_from_service.", bytes_read_from_service);
 
             bytes_write_in_buffer = nwrite(ringBuffer_Out, buf, bytes_read_from_service);
 
@@ -65,12 +64,6 @@ thread_write_to_device(HANDLE hDev) {
         if (nreadable(ringBuffer_Out) > 0) {
             bytes_read_from_buffer = nread(ringBuffer_Out, buf, BUFFER_SIZE);
 
-            std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-            auto timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
-            uint8_t binary_timestamp[sizeof(timestamp)];
-            std::memcpy(binary_timestamp, &timestamp, sizeof(timestamp));
-            log_service.write(reinterpret_cast<const char*>(binary_timestamp), sizeof(binary_timestamp));
-
             log_service.write(reinterpret_cast<const char*>(buf), bytes_read_from_buffer);        
 
             WaitForSingleObject(hSmpCom, INFINITE);
@@ -81,7 +74,7 @@ thread_write_to_device(HANDLE hDev) {
                 printf("**********Error: write_to_service**********\n");
             }
             else {
-                printf("%d bytes_write_to_device.---\n", bytes_write_to_device);
+                printf("%d bytes_write_to_device.+++\n", bytes_write_to_device);
             }
         }
     }
@@ -112,7 +105,7 @@ thread_write_to_service(HANDLE hDev) {
                 printf("\n**********Error: write_to_service.**********\n");
             }
             else {
-                printf("%d bytes_write_to_service.\n", bytes_write_to_service);
+                printf("%d bytes_write_to_service.---\n", bytes_write_to_service);
             }
         }
     }

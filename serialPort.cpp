@@ -26,9 +26,6 @@ HANDLE PORT_open(LPCTSTR port, DWORD flag) {
         printf("Error opening port:%p.\n", port);
         return NULL;
     }
-    else {
-        printf("opening port successful.\n");
-    }
     return hDev;
 }
 

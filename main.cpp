@@ -1,7 +1,5 @@
 #include "thread.h"
 
-extern std::ofstream log_service;
-extern std::ofstream log_device;
 
 int main(int argc, char* argv[])    
 {
@@ -9,8 +7,8 @@ int main(int argc, char* argv[])
     DWORD dwThreadId1, dwThreadId2, dwThreadId3, dwThreadId4;
 
     HANDLE hVirtualDev = PORT_open(L"COM2", NULL);
-    HANDLE hOutputDev = PORT_open(L"COM1", NULL);
-  
+    HANDLE hOutputDev = PORT_open(L"COM7", NULL);
+
 
     if (hVirtualDev == NULL || hOutputDev == NULL)
         return -1;
@@ -22,9 +20,6 @@ int main(int argc, char* argv[])
         return -1;
 
     if (!Log_init())
-        return -1;
-
-    if (!event_init(hVirtualDev) || !event_init(hOutputDev))
         return -1;
 
 
@@ -40,7 +35,7 @@ int main(int argc, char* argv[])
         0,
         &dwThreadId1);
     if (hThread1 == NULL) {
-        printf("Error:unable to create thread.\n");
+        printf("Error: unable to create thread_read_from_service.\n");
         ExitProcess(1);
     }
 
@@ -52,7 +47,7 @@ int main(int argc, char* argv[])
         0,
         &dwThreadId4);
     if (hThread4 == NULL) {
-        printf("Error:unable to create thread.\n");
+        printf("Error: unable to create thread_write_to_device.\n");
         ExitProcess(1);
     }
 
@@ -64,7 +59,7 @@ int main(int argc, char* argv[])
         0,
         &dwThreadId2);
     if (hThread2 == NULL) {
-        printf("Error:unable to create thread\n");
+        printf("Error: unable to create thread_write_to_service.\n");
         ExitProcess(1);
     }
     
@@ -76,7 +71,7 @@ int main(int argc, char* argv[])
         0,
         &dwThreadId3);
     if (hThread3 == NULL) {
-        printf("Error:unable to create thread\n");
+        printf("Error: unable to create thread_read_from_device\n");
         ExitProcess(1);
     }
 

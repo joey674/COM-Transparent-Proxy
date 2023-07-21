@@ -17,11 +17,8 @@ public:
 
 
 int nwrite(ringBuffer* rBuffer, const void* data, size_t num);
-
 int nread(ringBuffer* rBuffer, void* output, size_t num);
-
 int clear(ringBuffer* rBuffer);
-
 size_t nreadable(ringBuffer* rBuffer);
 
 
