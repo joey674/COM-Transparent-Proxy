@@ -60,37 +60,3 @@ bool PORT_set(HANDLE hDev) {
     return TRUE;
 }
 
-bool PORT_check(HANDLE hDev) {
-    //OVERLAPPED overlapped = { 0 };
-    //overlapped.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-
-    //DWORD eventMask;
-    //SetCommMask(hDev, EV_RXCHAR);
-    //if (!WaitCommEvent(hDev, &eventMask, &overlapped)) {
-    //    if (GetLastError() != ERROR_IO_PENDING) {
-    //        CloseHandle(overlapped.hEvent);
-    //        return false;
-    //    }
-    //}
-    //else if (!(eventMask & EV_RXCHAR)) {
-    //    CloseHandle(overlapped.hEvent);
-    //    return false;
-    //}
-
-    //DWORD dwRes = WaitForSingleObject(overlapped.hEvent, 100);
-    //CloseHandle(overlapped.hEvent);
-    //if (dwRes == WAIT_OBJECT_0) {
-    //    return true;
-    //}
-    return false;
-}
-
-bool PORT_recv(HANDLE hDev, void* rcv_buf) {
-    //return ReadFile(hDev, rcv_buf, 1, NULL, &olRead);
-    return 0;
-}
-
-bool PORT_send(HANDLE hDev, void* send_buf) {
-    //return WriteFile(hDev, send_buf, 1, NULL, &olWrite);
-    return 0;
-}
