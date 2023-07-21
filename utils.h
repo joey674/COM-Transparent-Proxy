@@ -58,14 +58,3 @@ bool Log_init() {
     printf("create logFile successful.\n");
     return TRUE;
 }
-
-bool event_init(HANDLE hDev) {
-    
-    //if (!SetCommMask(hDev, EV_RXCHAR))
-    //    return FALSE;
-
-    //COMMTIMEOUTS timeouts;
-
-    return TRUE;
-
-}

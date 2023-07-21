@@ -1,7 +1,5 @@
 #include "thread.h"
 
-extern ringBuffer* ringBuffer_Out;
-extern ringBuffer* ringBuffer_In;
 extern std::ofstream log_service;
 extern std::ofstream log_device;
 
@@ -10,11 +8,8 @@ int main(int argc, char* argv[])
     HANDLE hThread1, hThread2, hThread3, hThread4;
     DWORD dwThreadId1, dwThreadId2, dwThreadId3, dwThreadId4;
 
-    ringBuffer_Out = new ringBuffer();
-    ringBuffer_In = new ringBuffer();
-
     HANDLE hVirtualDev = PORT_open(L"COM2", NULL);
-    HANDLE hOutputDev = PORT_open(L"COM5", NULL);
+    HANDLE hOutputDev = PORT_open(L"COM1", NULL);
   
 
     if (hVirtualDev == NULL || hOutputDev == NULL)

@@ -94,7 +94,6 @@ thread_write_to_service(HANDLE hDev) {
     int i = 0;
     DWORD bytes_read_from_buffer = 0;
     DWORD bytes_write_to_service = 0;
-    //uint8_t buf[BUFFER_SIZE] = { 0 };
     uint8_t* buf = new uint8_t[BUFFER_SIZE]();
 
     while (1) {
@@ -126,7 +125,6 @@ thread_read_from_device(HANDLE hDev) {
     int i = 0;
     DWORD bytes_read_from_device = 0;
     DWORD bytes_write_in_buffer = 0;
-    //uint8_t buf[BUFFER_SIZE] = { 0 };
     uint8_t* buf = new uint8_t[BUFFER_SIZE]();
     DWORD errors;
     COMSTAT status;

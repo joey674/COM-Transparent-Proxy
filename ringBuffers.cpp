@@ -1,7 +1,7 @@
 ﻿#include "ringBuffers.h"
 
-ringBuffer*  ringBuffer_Out ;
-ringBuffer*  ringBuffer_In ;
+ringBuffer*  ringBuffer_Out = new ringBuffer();
+ringBuffer*  ringBuffer_In = new ringBuffer();
 
 ringBuffer::ringBuffer() : readIndex(0), writeIndex(0), bytesCount(0)
 {
